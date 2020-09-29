@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:mm="http://myapp.com/facelets" >
+<h:head>
+	<title>viewList</title>
+</h:head>
+<h:body>
+	<h:form>
+		<div style="background-color: #34495e; color: #ecf0f1; text-align: left; font-family: Arial, Helvetica, sans-serif; font-weight:bold; font-size:20px; margin-left: 5px; padding: 2px; border-radius: 8px" >
+			<h2 style="margin-left: 10px">Employee Manager Application</h2>
+		</div>
+		<div style="font-size: 20px; font-weight: bold; margin: 10px; color:#2c3e50">
+			<mm:girish myText="Employee Records"></mm:girish>
+		</div>
+		<p:dataTable id="users" var="employee" value="#{employeeBean.employees}" 
+		border="3" cellpadding="1" cellspacing="1">
+			<p:column width="5%">
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{employee.id}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="First Name" />
+				</f:facet>
+				<h:outputText value="#{employee.firstName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Last Name" />
+				</f:facet>
+				<h:outputText value="#{employee.lastName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Role" />
+				</f:facet>
+				<h:outputText value="#{employee.designation}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Date Of Joining" />
+				</f:facet>
+				<h:outputText value="#{employee.doj}" />
+			</p:column>
+			<p:column width="20%">
+				<f:facet name="header">
+					<h:outputText value="Email"/>
+				</f:facet>
+				<h:outputText id="email" value="#{employee.email}"/>
+			</p:column>
+			
+			<p:column width="10%">
+				<f:facet name="header">
+					<h:outputText value="Modify"></h:outputText>
+				</f:facet>
+				<p:commandButton value="Update" action="#{employeeBean.getEmployeeById(employee.id)}" style="background-color:#ff9f1a; color:white"></p:commandButton>
+			</p:column>
+			<p:column width="10%">
+				<f:facet name="header">
+					<h:outputText value="Delete"></h:outputText>
+				</f:facet>
+				<p:commandButton value="Delete" action="#{employeeBean.deleteEmployee(employee)}" style="background-color:#ff3838; color:white">
+					<p:confirm header="Confirmation Message" message="This item will be permanently Deleted" icon="ui-icon-alert"></p:confirm>
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Delete" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Cancel" type="button" styleClass="ui-confirmdialogue-no" icon="ui-icon-close"></p:commandButton>
+				</p:confirmDialog>
+			</p:column>
+
+		</p:dataTable>
+		<br/>
+		<br/>
+	</h:form>
+	<div style="text-align: center">
+	<p:button value="Add Employee" outcome="add-employee" style="background-color:#079992; color:white"></p:button>
+	</div>
+</h:body>
+
+</html>

@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Add Employee</title>
+	<h:outputStylesheet library="css" name="add-employee.css"></h:outputStylesheet>
+
+</h:head>
+<h:body style="background-color:#ced6e0">
+	<div
+		style="text-align: center; margin-left: 350px; margin-right: 350px; border-radius: 10px; border-color: #006080; font-family: Arial, Helvetica, sans-serif; background-color: white">
+		<h:form>
+			<legend
+				style="border-radius: 10px; color: white; font-size: 20px; font-weight: bold; background-color: #005e80; padding: 10px; border-bottom-style: solid;">Add
+				Employee</legend>
+			<ul>
+				<h:outputLabel for="fName" value="First Name : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:inputText
+						id="firstName" type="text" value="#{employeeBean.firstName}"
+						required="true" validatorMessage="This is a required field">
+						<f:validateLength minimum="3" />
+						<p:ajax event="blur" update="nameMsg" />
+					</p:inputText> <p:message id="nameMsg" for="firstName" display="icon" /></li>
+				<br />
+
+				<h:outputLabel for="lastName" value="Last Name : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:inputText
+						id="lastName" value="#{employeeBean.lastName}" required="true">
+						<f:validateLength minimum="2" />
+						<p:ajax event="blur" update="lastNameMsg" />
+					</p:inputText> <p:message id="lastNameMsg" for="lastName" display="icon" /></li>
+				<br />
+				<!--  
+				<h:outputLabel for="designation" value="Emplooye Role : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:inputText
+						id="designation" value="#{employeeBean.designation}">
+						<f:validateLength minimum="3" />
+						<p:ajax event="blur" update="desigMsg" />
+					</p:inputText> <p:message id="desigMsg" for="designation" display="icon" /></li>
+				<br /> -->
+				
+				<h:outputLabel for="designation" value="Emplooye Role : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px">
+				<p:selectOneMenu value="#{employeeBean.designation}" required="true" requiredMessage="This is a required field">
+					<f:selectItem itemValue="" itemLabel="Select One"/>
+					<f:selectItem itemValue="Developer" itemLabel="Developer" />
+					<f:selectItem itemValue="Senior Developer" itemLabel="Senior Developer" />
+					<f:selectItem itemValue="Technical Lead" itemLabel="Technical Lead" />
+					<f:selectItem itemValue="Team Lead" itemLabel="Team Lead" />
+					<f:selectItem itemValue="QA Engineer" itemLabel="QA Engineer" />
+					<f:selectItem itemValue="Senior QA Engineer" itemLabel="Senior QA Engineer"></f:selectItem>
+					<f:selectItem itemValue="Technical Manager" itemLabel="Technical Manager" />
+				</p:selectOneMenu>
+				</li>
+				<br/>
+				
+				<h:outputLabel for="doj" value="Date of Join : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:datePicker
+						value="#{employeeBean.doj}" pattern="dd.MM.yyyy"
+						yearNavigator="true"></p:datePicker></li>
+				<br/>
+				<h:outputLabel for="email" value="Email : " style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:inputText
+						id="email" value="#{employeeBean.email}" required="true">
+						<f:validateLength minimum="5" />
+						<p:ajax event="blur" update="emailMsg" />
+					</p:inputText> <p:message id="emailMsg" for="email" display="icon" /></li>
+				<li style="list-style: none; margin-top: 40px"><p:commandButton
+						id="addUser" value="Save" action="#{employeeBean.addEmployee}"
+						ajax="false"
+						style="background-color:#239023; color: white; border-radius: 10px" />
+					<p:commandButton id="reset" value="Reset"
+						action="#{employeeBean.reset}" ajax="false"
+						style="background-color: #993300; color:white; border-radius: 10px" />
+				</li>
+			</ul>
+
+		</h:form>
+		<div
+			style="background-color: #005e80; padding: 5px; margin-top: 5px; border-radius: 10px">
+			<p:button value="Back" outcome="dashboard.xhtml" ></p:button>
+		</div>
+	</div>
+</h:body>
+</html>

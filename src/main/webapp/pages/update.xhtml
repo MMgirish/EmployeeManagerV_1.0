@@ -1,0 +1,79 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Update User</title>
+</h:head>
+
+<h:body>
+	<div style="background-color:#ced6e0">
+	<div
+		style="text-align: center; margin-left: 350px; margin-right: 350px; border-radius: 10px; border-color: #006080; font-family: Arial, Helvetica, sans-serif; background-color: white">
+		<h:form>
+			<legend
+				style="border-radius: 10px; color: white; font-size: 20px; font-weight: bold; background-color: #3dc1d3; padding: 10px; border-bottom-style: solid;">Update
+				Record</legend>
+			<ul>
+			
+				<h:outputLabel for="fName" value="First Name : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:inputText
+						id="firstName" type="text" value="#{employeeBean.firstName}"
+						required="true" validatorMessage="This is a required field">
+						<f:validateLength minimum="3" />
+						<p:ajax event="blur" update="nameMsg" />
+					</p:inputText> <p:message id="nameMsg" for="firstName" display="icon" /></li>
+				<br />
+
+				<h:outputLabel for="lastName" value="Last Name : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:inputText
+						id="lastName" value="#{employeeBean.lastName}">
+						<f:validateLength minimum="2" />
+						<p:ajax event="blur" update="lastNameMsg" />
+					</p:inputText> <p:message id="lastNameMsg" for="lastName" display="icon" /></li>
+				<br />
+				<h:outputLabel for="designation" value="Emplooye Role : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px">
+				<p:selectOneMenu value="#{employeeBean.designation}">
+					<f:selectItem itemValue="" itemLabel="Select One"/>
+					<f:selectItem itemValue="Developer" itemLabel="Developer" />
+					<f:selectItem itemValue="Senior Developer" itemLabel="Senior Developer" />
+					<f:selectItem itemValue="Technical Lead" itemLabel="Technical Lead" />
+					<f:selectItem itemValue="Team Lead" itemLabel="Team Lead" />
+					<f:selectItem itemValue="QA Engineer" itemLabel="QA Engineer" />
+					<f:selectItem itemValue="Senior QA Engineer" itemLabel="Senior QA Engineer"></f:selectItem>
+					<f:selectItem itemValue="Technical Manager" itemLabel="Technical Manager" />
+				</p:selectOneMenu>
+				</li>
+				<br/>
+				<h:outputLabel for="doj" value="Date of Join : "
+					style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:datePicker
+						value="#{employeeBean.doj}" pattern="dd.MM.yyyy"
+						yearNavigator="true"></p:datePicker></li>
+				<br />
+				<h:outputLabel for="email" value="Email : " style="color:#005e80" />
+				<li style="list-style: none; margin-top: 10px"><p:inputText
+						id="email" value="#{employeeBean.email}">
+						<f:validateLength minimum="5" />
+						<p:ajax event="blur" update="emailMsg" />
+					</p:inputText> <p:message id="emailMsg" for="email" display="icon" /></li>
+				<li style="list-style: none; margin-top: 40px"><p:commandButton
+						value="Save Changes"
+						action="#{employeeBean.updateEmployee(employeeBean)}"
+						style="background-color:#239023; color: white; border-radius: 10px" />
+				</li>
+			</ul>
+		</h:form>
+		<div
+			style="background-color: #3dc1d3; padding: 5px; border-radius: 10px">
+			<p:button value="Back" outcome="dashboard.xhtml"></p:button>
+		</div>
+	</div>
+	</div>
+</h:body>
+</html>
